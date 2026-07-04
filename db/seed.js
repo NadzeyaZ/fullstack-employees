@@ -1,6 +1,6 @@
 import db from "#db/client";
 import { faker } from "@faker-js/faker";
-import { createEmployee } from "./queries/employees";
+import { createEmployee } from "#db/queries/employees";
 
 await db.connect();
 await seedEmployees();
@@ -11,8 +11,8 @@ async function seedEmployees() {
   // TODO
   for (let i = 0; i < 10; i++) {
     const name = faker.person.fullName();
-    const birthday = faker.person.birthday();
-    const salary = faker.number.int();
+    const birthday = faker.date.birthdate();
+    const salary = faker.number.int({ min: 30000, max: 150000 });
     await createEmployee({ name, birthday, salary });
   }
 }
