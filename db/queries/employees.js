@@ -65,9 +65,7 @@ export async function updateEmployee({ id, name, birthday, salary }) {
 export async function deleteEmployee(id) {
   // TODO
   const sql = `
-    DELETE *
-    FROM employees
-    WHERE id = $1
+    DELETE FROM employees WHERE id = $1
   `;
   const { rows } = await db.query(sql, [id]);
   return rows[0];
